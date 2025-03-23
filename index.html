@@ -3,20 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Responsive Header with Expanding Search Bar</title>
     <link href="./output.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for expanding search bar with animation */
+        .search-container {
+            position: relative;
+            width: 100%;
+        }
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        .search-dropdown.active {
+            max-height: 500px; /* Adjust based on content height */
+            opacity: 1;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-100">
     <!-- Header -->
-   <header>
-        <header class="w-screen h-20 border-2 border-gray-300 flex z-50 bg-white  fixed">
-      <div class="h-20 w-44 flex justify-center items-center">
-        <img src="./asserts/jiosaavan logo.png" alt="logo">
-      </div>
-      <!-- Select Language Dropdown -->
-        <div id="languageToggle" class="h-20 flex md:hidden align-middle items-center cursor-pointer relative ml-[120px]">
-            Select Language  ▼
+    <header class="w-screen h-20 border-2 border-gray-300 flex z-50 bg-white fixed">
+        <!-- Logo -->
+        <div class="h-20 w-44 flex justify-center items-center">
+            <img src="./asserts/jiosaavan logo.png" alt="logo">
+        </div>
+
+        <!-- Mobile Language Dropdown -->
+        <div id="languageToggle" class="h-20 flex md:hidden items-center cursor-pointer relative ml-[120px]">
+            Select Language ▼
         </div>
         <div id="languageDropdown" class="hidden bg-white p-6 rounded-md shadow-md w-80 absolute top-20 right-0">
             <div class="text-lg font-semibold text-gray-800">What music do you like?</div>
@@ -37,158 +62,159 @@
                 Update
             </button>
         </div>
-      <div class="h-20 w-40 justify-start items-center hidden md:flex gap-5 font-bold ml-10">
-        <div class="hover:border-b-2 hover:border-black h-20 flex align-middle items-center"><a>Music</a></div>
-        <div class="hover:border-b-2 hover:border-black h-20 flex align-middle items-center"><a>Podcast</a></div>
-        <div class="hover:border-b-2 hover:border-black h-20 flex align-middle items-center"><a>Pro</a></div>
-      </div>
-      <div class="h-20 w-5xl  justify-center items-center ml-28  hidden md:flex">
-        <div id="searchContainer" class="h-20 w-3xl flex justify-center items-center cursor-pointer relative ">
-            <div class="w-full h-10 bg-white rounded-full flex justify-center items-center border-2 border-gray-300">
-                <i class="fa-solid fa-magnifying-glass ml-4 text-gray-500 "></i> 
-                <input type="text" id="searchInput" placeholder="Search" class="outline-none ml-2 flex-1 text-black bg-transparent ">
-                <!-- Expanding Section (Initially Hidden) -->
-        <div id="searchDropdown" class="hidden bg-white p-4 rounded-lg shadow-lg w-full absolute top-16 left-0 ">
-            <div class="flex items-center justify-between text-gray-400 text-sm mb-2">
-                <span class="text-lg font-bold text-gray-400">TOP RESULTS</span>
-                <span>SONGS</span>
-                <span>ALBUMS</span>
-                <span>RECENT SEARCHES</span>
-            </div>
 
-            <!-- Results Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4 bg-gray-700 p-2 rounded-lg">
-                    <img src="https://c.saavncdn.com/743/Alone-Punjabi-2020-20200507184621-500x500.jpg" class="w-16 h-16 rounded-lg">
-                    <div>
-                        <div class="font-bold text-white">Alone</div>
-                        <div class="text-gray-400 text-sm">2020 Punjabi Album</div>
-                    </div>
-                </div>
-            </div>
+        <!-- Desktop Navigation -->
+        <div class="h-20 w-40 justify-start items-center hidden md:flex gap-5 font-bold ml-10">
+            <div class="hover:border-b-2 hover:border-black h-20 flex items-center"><a>Music</a></div>
+            <div class="hover:border-b-2 hover:border-black h-20 flex items-center"><a>Podcast</a></div>
+            <div class="hover:border-b-2 hover:border-black h-20 flex items-center"><a>Pro</a></div>
+        </div>
 
-            </div>
+        <!-- Search Bar (Hidden in Mobile View) -->
+        <div class="h-20 w-3xl justify-center items-center ml-28 hidden md:flex">
+            <div class="search-container w-full">
+                <!-- Search Box -->
+                <div class="flex items-center border border-gray-300 rounded-full bg-white px-4 py-2 cursor-pointer" id="searchBox">
+                    <svg class="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-4.35-4.35m0 0a8.5 8.5 0 1 0-1.4 1.4L21 21z"></path>
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="Search..."
+                        class="w-full focus:outline-none text-lg bg-transparent">
+                </div>
 
-        </div>
-    </div> 
-     <div class="h-20 w-96 hidden md:flex justify-end items-center pr-4 gap-5 font-bold ml-32  relative">
-        <!-- Select Language Dropdown -->
-        <div id="languageToggle1" class="h-20 flex align-middle items-center cursor-pointer relative">
-            Select Language  ▼
-        </div>
-        <div id="languageDropdown1" class="hidden bg-white p-6 rounded-md shadow-md w-80 absolute top-20 right-0">
-            <div class="text-lg font-semibold text-gray-800">What music do you like?</div>
-            <div class="italic text-gray-600 mt-1">Pick all the languages you want to listen to.</div>
-            <br>
-            <div class="grid grid-cols-2 gap-2 mt-2">
-                <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">English</div>
-                <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Hindi</div>
-                <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Marathi</div>
-                <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Punjabi</div>
-                <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Kannada</div>
-                <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Telugu</div>
-                <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Gujarati</div>
-                <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Tamil</div>
-                <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Malayalam</div>
+                <!-- Search Results Dropdown -->
+                <div id="searchDropdown" class="search-dropdown">
+                    <div class="p-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-gray-500 font-bold text-lg">TRENDING</h3>
+                        </div>
+
+                        <!-- Grid Layout -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mt-2">
+                            <!-- Trending Item -->
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/50" class="w-14 h-14 rounded-lg">
+                                <div>
+                                    <div class="font-bold text-gray-800">Tu Hain Toh Main Hoon</div>
+                                    <div class="text-gray-500 text-sm">Song</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/50" class="w-14 h-14 rounded-lg">
+                                <div>
+                                    <div class="font-bold text-gray-800">Shree Hanuman Chalisa</div>
+                                    <div class="text-gray-500 text-sm">Song</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/50" class="w-14 h-14 rounded-lg">
+                                <div>
+                                    <div class="font-bold text-gray-800">Arijit Singh</div>
+                                    <div class="text-gray-500 text-sm">Artist</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/50" class="w-14 h-14 rounded-lg">
+                                <div>
+                                    <div class="font-bold text-gray-800">Hanuman Chalisa</div>
+                                    <div class="text-gray-500 text-sm">Album</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/50" class="w-14 h-14 rounded-lg">
+                                <div>
+                                    <div class="font-bold text-gray-800">Ram Siya Ram</div>
+                                    <div class="text-gray-500 text-sm">Song</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/50" class="w-14 h-14 rounded-lg">
+                                <div>
+                                    <div class="font-bold text-gray-800">Aashiqui 2</div>
+                                    <div class="text-gray-500 text-sm">Album</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/50" class="w-14 h-14 rounded-lg">
+                                <div>
+                                    <div class="font-bold text-gray-800">Raanjhana</div>
+                                    <div class="text-gray-500 text-sm">Song</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/50" class="w-14 h-14 rounded-lg">
+                                <div>
+                                    <div class="font-bold text-gray-800">Krishna Bhajan - Lagan Tumse</div>
+                                    <div class="text-gray-500 text-sm">Album</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/50" class="w-14 h-14 rounded-lg">
+                                <div>
+                                    <div class="font-bold text-gray-800">Shree Hanuman Chalisa</div>
+                                    <div class="text-gray-500 text-sm">Album</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-3">
+                                <img src="https://via.placeholder.com/50" class="w-14 h-14 rounded-lg">
+                                <div>
+                                    <div class="font-bold text-gray-800">Namo Namo</div>
+                                    <div class="text-gray-500 text-sm">Song</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md w-full hover:bg-blue-600 transition">
-                Update
-            </button>
         </div>
-        <div class="hover:border-b-2 hover:border-black h-20 hidden md:flex align-middle items-center">Login</div>
-        <div class="hover:border-b-2 hover:border-black h-20 hidden md:flex align-middle items-center">Sign up</div>
-    </div>  
+
+        <!-- Desktop Language Dropdown and Login/Signup -->
+        <div class="h-20 w-96 hidden md:flex justify-end items-center pr-4 gap-5 font-bold  relative">
+            <div id="languageToggle2" class="h-20 flex items-center cursor-pointer relative">
+                Select Language ▼
+            </div>
+            <div id="languageDropdown2" class="hidden bg-white p-6 rounded-md shadow-md w-80 absolute top-20 right-0">
+                <div class="text-lg font-semibold text-gray-800">What music do you like?</div>
+                <div class="italic text-gray-600 mt-1">Pick all the languages you want to listen to.</div>
+                <br>
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                    <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">English</div>
+                    <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Hindi</div>
+                    <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Marathi</div>
+                    <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Punjabi</div>
+                    <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Kannada</div>
+                    <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Telugu</div>
+                    <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Gujarati</div>
+                    <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Tamil</div>
+                    <div class="bg-gray-200 px-3 py-1 rounded-md text-gray-800 text-center cursor-pointer">Malayalam</div>
+                </div>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md w-full hover:bg-blue-600 transition">
+                    Update
+                </button>
+            </div>
+            <div class="hover:border-b-2 hover:border-black h-20 flex items-center">Login</div>
+            <div class="hover:border-b-2 hover:border-black h-20 flex items-center">Sign up</div>
+        </div>
     </header>
+
     <!-- Navigation Tabs (Mobile Only) -->
     <nav class="md:hidden px-4 py-2 text-2xl font-semibold flex space-x-6 ml-[20px] pt-24">
         <a href="#" class="text-teal-600 border-b-2 border-teal-600">Music</a>
         <a href="#" class="text-gray-600">Podcasts</a>
-    </nav>
-    <!-- Bottom Navigation Bar -->
+    </nav>
+
+    <!-- Bottom Navigation Bar (Mobile Only) -->
     <nav class="fixed bottom-0 w-full bg-white shadow-md flex justify-around py-2 text-gray-600 md:hidden z-50">
         <a href="#" class="flex flex-col items-center text-blue-600">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -211,372 +237,441 @@
             <span class="text-xs">Pro</span>
         </a>
     </nav>
-    </header>
+
+   <section class="w-screen h-[580px] flex border border-transparent md:pt-20">
+    <!-- Left Sidebar (Fixed and Hidden on Mobile) -->
     <aside class="hidden md:block fixed h-[580px] w-48 top-0 left-0 border-r-2 border-gray-200 mt-20 ml-14">
-    <h3 class="text-[20px] mt-10 font-semibold text-gray-400">Browse</h3>
-    <nav>
-        <ul class="mt-2 text-[19px] cursor-pointer font-semibold">
-            <li class="text-gray-600 hover:text-black">New Release</li>
-            <li class="text-gray-600 hover:text-black">Top Chart</li>
-            <li class="text-gray-600 hover:text-black">Top Playlist</li>
-            <li class="text-gray-600 hover:text-black">Podcast</li>
-            <li class="text-gray-600 hover:text-black">Top Artist</li>
-            <li class="text-gray-600 hover:text-black">Radio</li>
-        </ul>
-    </nav>
+        <h3 class="text-[20px] mt-10 font-semibold text-gray-400">Browse</h3>
+        <nav>
+            <ul class="mt-2 text-[19px] cursor-pointer font-semibold">
+                <li class="text-gray-600 hover:text-black">New Release</li>
+                <li class="text-gray-600 hover:text-black">Top Chart</li>
+                <li class="text-gray-600 hover:text-black">Top Playlist</li>
+                <li class="text-gray-600 hover:text-black">Podcast</li>
+                <li class="text-gray-600 hover:text-black">Top Artist</li>
+                <li class="text-gray-600 hover:text-black">Radio</li>
+            </ul>
+        </nav>
 
-    <h3 class="text-[20px] mt-10 font-semibold text-gray-400">Library</h3>
-    <nav>
-        <ul class="mt-2 text-[19px] cursor-pointer font-semibold">
-            <li class="text-gray-600 hover:text-black"><i class="fa-solid fa-clock-rotate-left mr-3"></i>History</li>
-            <li class="text-gray-600 hover:text-black"><i class="fa-solid fa-music mr-3"></i>Liked Songs</li>
-            <li class="text-gray-600 hover:text-black"><i class="fa-solid fa-record-vinyl mr-3"></i>Album</li>
-            <li class="text-gray-600 hover:text-black"><i class="fa-solid fa-podcast mr-3"></i>Podcast</li>
-            <li class="text-gray-600 hover:text-black"><i class="fa-solid fa-pen mr-3"></i>Artist</li>
-        </ul>
-    </nav>
+        <h3 class="text-[20px] mt-10 font-semibold text-gray-400">Library</h3>
+        <nav>
+            <ul class="mt-2 text-[19px] cursor-pointer font-semibold">
+                <li class="text-gray-600 hover:text-black"><i class="fa-solid fa-clock-rotate-left mr-3"></i>History</li>
+                <li class="text-gray-600 hover:text-black"><i class="fa-solid fa-music mr-3"></i>Liked Songs</li>
+                <li class="text-gray-600 hover:text-black"><i class="fa-solid fa-record-vinyl mr-3"></i>Album</li>
+                <li class="text-gray-600 hover:text-black"><i class="fa-solid fa-podcast mr-3"></i>Podcast</li>
+                <li class="text-gray-600 hover:text-black"><i class="fa-solid fa-pen mr-3"></i>Artist</li>
+            </ul>
+        </nav>
 
-    <button class="border-2 border-green-400 h-12 w-36 rounded-full text-green-400 mt-8 hover:border-green-600 hover:text-green-600 transition">
-        + New Playlist
-    </button>
-</aside>
+        <button class="border-2 border-green-400 h-12 w-36 rounded-full text-green-400 mt-8 hover:border-green-600 hover:text-green-600 transition">
+            + New Playlist
+        </button>
+    </aside>
 
+    <!-- Main Content (Scrollable) -->
+    <!-- Main Content -->
+<main class=" md:ml-64 p-4 h-[calc(100vh-5rem)] overflow-y-auto">
+    <!-- Trending Now Section -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Trending Now</h2>
+        <!-- Album Cards Container -->
+        <div class="overflow-x-auto whitespace-nowrap pb-4 scrollbar-hide">
+            <!-- Combined Rows Container -->
+            <div class="inline-block">
+                <!-- First Row -->
+                <div class="flex gap-4">
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/ANIMAL.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Animal</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/ATHA.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Atha</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/APNA BANALAKA.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Apna Bana</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-     <!-- Main Container -->
-    <div class="flex flex-1  mb-20">
-        
-        <!-- Main Section -->
-        <main class="">
-            <section class="flex-1 md:ml-64   top-20 p-6 md:pt-32">
-            <h2 class="text-2xl font-semibold  mb-4 text-gray-600">Trending Now</h2>
-            <div class="flex flex-wrap gap-4">
-                 <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/ANIMAL.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Animal </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
+                <!-- Second Row -->
+                <div class="flex gap-4 mt-4">
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/ATHA.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Atha </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/APNA BANALAKA.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">apna banala </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/AZARD.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">AZARD </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/COOLIE.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Coolie </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/DOPATHI.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">DOPATHI </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/DRAGON.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Dragon </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/roman.jpeg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Tamil Album </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/GOAT.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Goat </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/SAI.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Asakuda </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/TERA VASTE.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Tera vaste</h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                
-                
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/GOLDEN SHADOW.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">GOLDEN SHADOW </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-               
-                
             </div>
-        </section>
-        <section class="flex-1 md:ml-64 relative top-20 p-6 ">
-            <h2 class="text-2xl font-semibold mb-4 text-gray-600">Top chart</h2>
-            <div class="flex flex-wrap gap-4">
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/devara.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Devara</h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/KANADIPOVA.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">KANADIPOVA </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/KYA MERI.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Kya meri </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/LUBBER PANDU.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Lubber panndu </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/MISMATCH.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">MISMATCH </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/MUMBAI.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">MUMBAI </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/PUSPA2.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Puspa2 </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/SAI.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Asakuda </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/TERA VASTE.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Tera vaste</h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                 <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/ANIMAL.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Animal </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/ATHA.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Atha </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
-                </div>
-                <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 border-2 border-gray-300 relative">
-                    <img src="./asserts/VIDA2.jpg" alt="Album Cover" class="w-40 h-40 object-cover rounded-lg">
-                    <h3 class="text-lg font-semibold mt-2">Vidamuyarchi </h3>
-                    <p class="text-gray-600">Anirudh</p>
-                    <!-- Overlay part -->
-              <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
-                <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
-                <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </div>
-              </div>
+        </div>
+    </section>
+
+    <!-- Top Chart Section -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Top Chart</h2>
+        <!-- Album Cards Container -->
+        <div class="overflow-x-auto whitespace-nowrap pb-4 scrollbar-hide">
+            <!-- Combined Rows Container -->
+            <div class="inline-block">
+                <!-- First Row -->
+                <div class="flex gap-4">
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/ANIMAL.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Animal</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/ATHA.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Atha</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/APNA BANALAKA.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Apna Bana</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-               
-                
+                <!-- Second Row -->
+                <div class="flex gap-4 mt-4">
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-2 shadow-md rounded-lg cursor-pointer w-44 relative">
+                        <img src="./asserts/devara.jpg" alt="Album Cover" class="w-full h-40 object-cover rounded-lg">
+                        <h3 class="text-lg font-semibold mt-2">Devara</h3>
+                        <p class="text-gray-600">Anirudh</p>
+                        <!-- Overlay part -->
+                        <div class="w-40 h-40 cursor-pointer hover:bg-black/50 absolute top-2 text-white rounded-lg  opacity-0 hover:opacity-100">
+                            <i class="fa-solid fa-circle-play text-3xl absolute top-[35%] left-[35%] p-3 bg-black rounded-full scale-100 hover:scale-125 transition-all duration-100 ease-linear"></i>
+                            <div class="w-full absolute flex justify-between items-end top-[80%] px-3 py-2">
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
-        <footer class="text-black p-5 md:ml-64 mt-20 ">
+        </div>
+    </section>
+    <footer class="text-black p-5 mb-20 mt-20 ">
   <div class="max-w-7xl mx-auto">
     <hr class="border-gray-700 mb-2 pb-1">
     <div class="overflow-hidden">
@@ -710,93 +805,79 @@
     </div>
   </div>
 </footer>
-        </main>
+</main>
 
-        <!-- Right Section (Black/Blank) -->
-        <aside >
-        </aside>
+    <!-- Right Sidebar (Hidden on Mobile) -->
+    <aside class="w-24 h-[580px] bg-gray-200 border-l border-gray-300 hidden md:block">
+        <!-- Right Sidebar Content -->
+        <div class="p-4">
+            <p>Right Sidebar</p>
+        </div>
+    </aside>
+</section>
+
+<!-- Footer -->
+    <footer class="fixed bottom-0 w-full bg-white shadow-md md:flex hidden justify-between items-center p-2 z-50">
+    <!-- Album Art and Controls -->
+    <div class="flex items-center gap-4 ml-5">
+        <!-- Album Art -->
+        <div class="w-12 h-12 bg-gray-400 rounded-md"></div>
     </div>
-     <!-- Footer -->
-    <footer class="fixed bottom-0 w-full bg-white shadow-md hidden md:flex justify-around  text-gray-600  z-50">
-        <div class=" border-2 border-gray-300 border-solid flex  w-screen justify-center bg-white  pl-20">
-  <!-- Player Controls -->
-    <div class="flex justify-between w-screen items-center p-4 bg-white" >
+    <!-- Controls -->
+        <div class="flex items-center gap-4 text-gray-500">
+            <i class="fas fa-reply"></i>
+            <i class="fas fa-backward cursor-pointer hover:text-gray-700"></i>
+            <i class="fas fa-play cursor-pointer hover:text-gray-700"></i>
+            <i class="fas fa-forward cursor-pointer hover:text-gray-700"></i>
+            <i class="fa-solid fa-shuffle"></i>
+        </div>
 
-      <!-- Album Art Placeholder -->
-      <div class="w-28 h-12 border-2 border-gray-200 border-solid bg-gray-400 rounded-md "></div>
-
-      <!-- Playback Controls -->
-      <div class="flex items-center  text-gray-500 text-xl space-x-5 gap-5 ">
-        <i class="fas fa-exchange cursor-pointer"></i> <!-- Repeat -->
-        <i class="fas fa-backward cursor-pointer"></i> <!-- Previous -->
-        <i id="playPauseBtn" class="fas fa-play cursor-pointer"></i> <!-- Play/Pause -->
-        <i class="fas fa-forward cursor-pointer"></i> <!-- Next -->
-        <i class="fas fa-random cursor-pointer"></i> <!-- Shuffle -->
-      </div>
-
-      <!-- Time, Options, and Volume -->
-      <div class="flex  text-gray-500 text-sm space-x-4 gap-6 items-center">
-        <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
-        <i class="fas fa-ellipsis-h cursor-pointer"></i> <!-- Options -->
-        <i id="volumeIcon" class="fas fa-volume-up cursor-pointer"></i> <!-- Volume -->
-        <i class="fas fa-expand cursor-pointer"></i> <!-- Expand -->
-      </div>
-
+    <!-- Volume and Time -->
+    <div class="flex items-center gap-4 text-gray-500">
+        <i class="fas fa-volume-up cursor-pointer hover:text-gray-700"></i>
+        <span>0:00 / 3:45</span>
     </div>
-</div>
-
-    </footer>
-    
-
+</footer>
+    <!-- JavaScript for Dropdowns -->
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const languageToggle = document.getElementById("languageToggle");
-        const languageDropdown = document.getElementById("languageDropdown");
+        // Toggle search dropdown with animation
+        const searchBox = document.getElementById("searchBox");
+        const searchDropdown = document.getElementById("searchDropdown");
 
-        languageToggle.addEventListener("click", function () {
-            languageDropdown.classList.toggle("hidden");
+        searchBox.addEventListener("click", function () {
+            searchDropdown.classList.toggle("active");
         });
 
         // Close dropdown when clicking outside
         document.addEventListener("click", function (event) {
-            if (!languageToggle.contains(event.target) && !languageDropdown.contains(event.target)) {
-                languageDropdown.classList.add("hidden");
-            }
-        });
-    });
-
-     const searchContainer = document.getElementById('searchContainer');
-        const searchDropdown = document.getElementById('searchDropdown');
-        const searchInput = document.getElementById('searchInput');
-
-        searchContainer.addEventListener('click', () => {
-            searchDropdown.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', (event) => {
-            if (!searchContainer.contains(event.target) && !searchDropdown.contains(event.target)) {
-                searchDropdown.classList.add('hidden');
+            if (!searchBox.contains(event.target) && !searchDropdown.contains(event.target)) {
+                searchDropdown.classList.remove("active");
             }
         });
 
-
-
-        document.addEventListener("DOMContentLoaded", function () {
-        const languageToggle1 = document.getElementById("languageToggle1");
-        const languageDropdown1 = document.getElementById("languageDropdown1");
-
-        languageToggle1.addEventListener("click", function () {
-            languageDropdown1.classList.toggle("hidden");
+        // Language Dropdown Toggle
+        document.getElementById("languageToggle").addEventListener("click", function () {
+            document.getElementById("languageDropdown").classList.toggle("hidden");
         });
 
-        // Close dropdown when clicking outside
+        // Close language dropdown when clicking outside
         document.addEventListener("click", function (event) {
-            if (!languageToggle1.contains(event.target) && !languageDropdown1.contains(event.target)) {
-                languageDropdown1.classList.add("hidden");
+            if (!event.target.closest("#languageToggle") && !event.target.closest("#languageDropdown")) {
+                document.getElementById("languageDropdown").classList.add("hidden");
             }
         });
-    });
 
-</script>
+         // Language Dropdown Toggle
+        document.getElementById("languageToggle2").addEventListener("click", function () {
+            document.getElementById("languageDropdown2").classList.toggle("hidden");
+        });
+
+        // Close language dropdown when clicking outside
+        document.addEventListener("click", function (event) {
+            if (!event.target.closest("#languageToggle2") && !event.target.closest("#languageDropdown2")) {
+                document.getElementById("languageDropdown2").classList.add("hidden");
+            }
+        });
+    </script>
 </body>
 </html>
